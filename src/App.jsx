@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import DisplayForm from './components/Personal-details'
+import PersonalInfo from './components/Personal-details'
+import AddEducationForm from './components/education-details'
 import './styles/App.css'
 
 function App() {
   return (
     <>
-      <DisplayForm />
+      <PersonalInfo />
+      <AddEducationForm />
     </>
   )
 }

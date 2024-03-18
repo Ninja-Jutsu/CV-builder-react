@@ -1,52 +1,27 @@
 import React, { useState } from "react";
 
-function MakeForm({ field, value, onChange, type }) {
-    const [isValidated, setValidate] = useState(true)
+export function MakeInput({ field, value, onChange, type}) {
     return (
-        <header>
-            <form action="#" className="emailForm">
-                {isValidated ? (
-                    <>  <div className="inputSection">
-                        <div id={type + "Div"}>
-                            <input
-                                id={value}
-                                type={type}
-                                value={value}
-                                onChange={onChange}
-                                placeholder={field}
-                            />
-                        </div>
-                        <button
-                            onClick={() => setValidate(false)}>
-                            Validate
-                        </button>
-                    </div>
-                    </>
-                ) : (
-                    <div id="validated">
-
-                        <button
-                            onClick={() => setValidate(true)}>
-                            Edit
-                        </button>
-                        <p>{field}: {value}</p>
-                    </div>
-                )}
-            </form>
-        </header>
+        <div className={type + "Div"}>
+            <input
+                id={value}
+                type={type}
+                value={value}
+                onChange={onChange}
+                placeholder={field}
+            />
+        </div>  
     )
 }
 
 
-export default function DisplayForm() {
+export default function PersonalInfo() {
     const [email, setEmail] = useState("")
     const [name, setName] = useState("")
-    const [address, setAddress] = useState("")
+    const [country, setCountry] = useState("")
     const [mobile, setMobile] = useState("")
     const [dateOfBirth, setBirth] = useState("")
-    const [availability, setAvailability] = useState("")
-
-
+    const [city, setCity] = useState("")
 
     function handleNameChange(e) {
         setName(e.target.value)
@@ -54,8 +29,8 @@ export default function DisplayForm() {
     function handleEmailChange(e) {
         setEmail(e.target.value)
     }
-    function handleAddressChange(e) {
-        setAddress(e.target.value)
+    function handleCountryChange(e) {
+        setCountry(e.target.value)
     }
     function handleMobileChange(e) {
         setMobile(e.target.value)
@@ -63,49 +38,57 @@ export default function DisplayForm() {
     function handleBirthChange(e) {
         setBirth(e.target.value)
     }
-    function handleAvailabilityChange(e) {
-        setAvailability(e.target.value)
+    function handleCityChange(e) {
+        setCity(e.target.value)
     }
 
     return (
-        <>
-            <MakeForm
-                field={'Email Address'}
-                value={email}
-                type={'email'}
-                onChange={handleEmailChange}
-            />
-            <MakeForm
+    <>
+        <div id='personalInfoFiller' className="inputs">
+            <MakeInput
                 field={'Name'}
                 value={name}
                 type={'text'}
                 onChange={handleNameChange}
             />
-            <MakeForm
+            <MakeInput
+                field={'Email Address'}
+                value={email}
+                type={'email'}
+                onChange={handleEmailChange}
+            />
+            <MakeInput
                 field={'Phone Number'}
                 value={mobile}
                 type={'text'}
                 onChange={handleMobileChange}
             />
-            <MakeForm
-                field={'Home Address'}
-                value={address}
+            <MakeInput
+                field={'Country'}
+                value={country}
                 type={'text'}
-                onChange={handleAddressChange}
+                onChange={handleCountryChange}
             />
-            <MakeForm
+            <MakeInput
                 field={'Date of Birth'}
                 value={dateOfBirth}
                 type={'text'}
                 onChange={handleBirthChange}
             />
-            <MakeForm
-                field={'Availability'}
-                value={availability}
+            <MakeInput
+                field={'City'}
+                value={city}
                 type={'text'}
-                onChange={handleAvailabilityChange}
+                onChange={handleCityChange}
             />
-        </>
+        </div>
+        <div id='personalInfoDisplay' className="display">
+            <p>Name: {name}</p>
+            <p>Email: {email}</p>
+            <p>Mobile: {mobile}</p>
+            <p>Country: {country}</p>
+            <p>Date Of Birth: {dateOfBirth}</p>           
+        </div>
+    </>
     )
 }
-
